@@ -17,7 +17,7 @@ public class LoginBuffer extends HttpServlet {
 
         try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT username FROM users WHERE username=(?) and password=(?)";
+            String sql = "SELECT * FROM users WHERE username=(?) and password=(?)";
 
             PreparedStatement prep = con.prepareStatement(sql);
 
@@ -25,11 +25,21 @@ public class LoginBuffer extends HttpServlet {
             prep.setString(2, password);
             ResultSet result = prep.executeQuery();
             
-            if (!result.next()) {
-                response.sendRedirect("login.jsp");
+            
+            if (result.next()) {
+                String permission = result.getString("permissions");
+                if (permission.equals("user")) {
+                    response.sendRedirect("home.jsp");
+                }
+                else if (permission.equals("rep")) {
+                    // fill with rep page
+                }
+                else if (permission.equals("admin")){
+                    response.sendRedirect("admin_home.jsp");
+                }
             }
             else {
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("login.jsp");
             }
             
             prep.close();
