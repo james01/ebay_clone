@@ -11,15 +11,15 @@ CREATE TABLE users (
 
 DROP TABLE IF EXISTS listings;
 CREATE TABLE listings (
-  listing_id INT PRIMARY KEY,
+  listing_id INT PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   minimum_price INT NOT NULL,
   initial_price INT NOT NULL,
   current_price INT NOT NULL,
   bid_increment INT NOT NULL,
-  start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
+  start_date DATETIME NOT NULL,
+  end_date DATETIME NOT NULL,
   seller VARCHAR(255) NOT NULL REFERENCES users(username)
 );
 
@@ -42,8 +42,8 @@ INSERT INTO listings VALUES (
   100,
   100,
   10,
-  '2022-05-11',
-  '2022-05-12',
+  NOW(),
+  NOW() + INTERVAL 1 DAY,
   'james01'
 );
 INSERT INTO listings VALUES (
@@ -54,7 +54,7 @@ INSERT INTO listings VALUES (
   100,
   100,
   10,
-  '2022-05-11',
-  '2022-05-12',
+  NOW(),
+  NOW() + INTERVAL 1 DAY,
   'james01'
 );
