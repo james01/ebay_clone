@@ -1,0 +1,30 @@
+.header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header__brand {
+    display: flex;
+    align-items: center;
+}
+
+.header__brand__text {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
