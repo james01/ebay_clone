@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
-<form method="post" action="home.jsp">
+<form method="post" action="signUpBufferServlet">
     <div class="signup-form">
         <h1>Sign up</h1>
         <div class="form-group">
