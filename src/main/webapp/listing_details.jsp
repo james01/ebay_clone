@@ -26,10 +26,11 @@
                 if (result.next())
                 {
             %>
-            <h1><%=result.getString("title") %></h1>
-            <h2><%=result.getString("description")%></h2>
-            <div><%=result.getString("current_price") %></div>
-            <div><%=result.getString("seller") %></div>
+            <h1><%=result.getString("title")%></h1>
+            <span><%=result.getString("description")%></span>
+            <div>$<%=result.getString("current_price")%></div>
+            <div>Seller: <%=result.getString("seller")%></div>
+            <div>Ends on <%=result.getDate("end_date")%></div>
             <%
                 }
             %>

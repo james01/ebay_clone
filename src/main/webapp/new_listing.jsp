@@ -36,6 +36,12 @@
                         <input required type="number" name="initial-price" id="initial-price" />
                     </div>
                     <div class="form-group">
+                        <input required type="radio" id="one-day" name="duration" value="1">
+                        <label for="one-day">One Day</label>
+                        <input required type="radio" id="one-week" name="duration" value="7">
+                        <label for="one-week">One Week</label>
+                    </div>
+                    <div class="form-group">
                         <input class="button button--primary" type="submit" name="create" value="Create" />
                     </div>
             </form>
