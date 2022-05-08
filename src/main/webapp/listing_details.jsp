@@ -25,7 +25,7 @@
                 boolean listingExists = listing.next();
 
                 String bidsSql = "SELECT * FROM bids WHERE placed_on=" + request.getParameter("listing_id") + " ORDER BY placed DESC";
-                ResultSet bids = con.createStatement().executeQuery(bidsSql);
+                ResultSet bids = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery(bidsSql);
                 int bidAmount = bids.next() ? bids.getInt("amount") : (listingExists ? listing.getInt("initial_price") : 0);
 
                 if (listingExists)
@@ -50,14 +50,16 @@
             <h2>Bid History</h2>
             <%
                 }
-                do
+
+                bids.beforeFirst();
+                while (bids.next())
                 {
             %>
                 <div>
                     <span><%=bids.getString("placed")%>: $<%=bids.getString("amount")%> by <%=bids.getString("placed_by")%></span>
                 </div>
             <%
-                } while (bids.next());
+                }
             %>
         </div>
     </main>
