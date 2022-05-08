@@ -30,7 +30,7 @@ public class PlaceBid extends HttpServlet {
 
             response.sendRedirect("listing_details.jsp?listing_id=" + listingId);
         } catch (SQLException e) {
-            response.sendRedirect("listing_details.jsp?listing_id=" + listingId + "&error=" + e.getLocalizedMessage());
+            throw new RuntimeException(e);
         }
     }
 }

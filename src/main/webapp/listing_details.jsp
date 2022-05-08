@@ -20,35 +20,33 @@
                 ApplicationDB db = new ApplicationDB();
                 Connection con = db.getConnection();
 
-                Statement stmt = con.createStatement();
-                String sql = "SELECT * FROM listings l INNER JOIN bids b ON l.listing_id = b.placed_on WHERE l.listing_id=" + request.getParameter("listing_id") + " ORDER BY b.placed DESC";
-                ResultSet result = stmt.executeQuery(sql);
+                String listingSql = "SELECT * FROM listings WHERE listing_id=" + request.getParameter("listing_id");
+                ResultSet listing = con.createStatement().executeQuery(listingSql);
+                boolean listingExists = listing.next();
 
-                if (result.next())
+                String bidsSql = "SELECT * FROM bids WHERE placed_on=" + request.getParameter("listing_id") + " ORDER BY placed DESC";
+                ResultSet bids = con.createStatement().executeQuery(bidsSql);
+                int bidAmount = bids.next() ? bids.getInt("amount") : (listingExists ? listing.getInt("initial_price") : 0);
+
+                if (listingExists)
                 {
             %>
-            <h1><%=result.getString("title")%></h1>
-            <span><%=result.getString("description")%></span>
-            <div>$<%=result.getString("amount")%></div>
-            <div>Seller: <a href="profile.jsp?username=<%=result.getString("seller")%>"><%=result.getString("seller")%></a></div>
-            <div>Ends on <%=result.getDate("end_date")%></div>
+            <h1><%=listing.getString("title")%></h1>
+            <span><%=listing.getString("description")%></span>
+            <div>$<%=bidAmount%></div>
+            <div>Seller: <a href="profile.jsp?username=<%=listing.getString("seller")%>"><%=listing.getString("seller")%></a></div>
+            <div>Ends on <%=listing.getDate("end_date")%></div>
 
             <form method="post" action="placeBidServlet">
-                <input type="hidden" name="listing-id" value="<%=result.getString("listing_id")%>" />
+                <input type="hidden" name="listing-id" value="<%=listing.getString("listing_id")%>" />
                 <input type="hidden" name="username" value="" />
                 <div class="form-group">
-                    <input type="number" name="bid-amount" id="bid-amount" />
+                    <input type="number" name="bid-amount" id="bid-amount" min="<%=bidAmount + listing.getInt("bid_increment")%>" />
                 </div>
                 <div class="form-group">
                     <input class="button button--primary" type="submit" name="place-bid" value="Place bid" />
                 </div>
             </form>
-            <%
-                }
-                if (request.getParameter("error") != null)
-                {
-            %>
-            <span>Error: <%=request.getParameter("error")%></span>
             <%
                 }
             %>
