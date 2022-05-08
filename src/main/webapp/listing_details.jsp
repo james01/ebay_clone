@@ -47,8 +47,17 @@
                     <input class="button button--primary" type="submit" name="place-bid" value="Place bid" />
                 </div>
             </form>
+            <h2>Bid History</h2>
             <%
                 }
+                do
+                {
+            %>
+                <div>
+                    <span><%=bids.getString("placed")%>: $<%=bids.getString("amount")%> by <%=bids.getString("placed_by")%></span>
+                </div>
+            <%
+                } while (bids.next());
             %>
         </div>
     </main>
