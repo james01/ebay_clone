@@ -16,7 +16,6 @@ CREATE TABLE listings (
   description VARCHAR(255) NOT NULL,
   minimum_price INT NOT NULL,
   initial_price INT NOT NULL,
-  current_price INT NOT NULL,
   bid_increment INT NOT NULL,
   start_date DATETIME NOT NULL,
   end_date DATETIME NOT NULL,
@@ -26,7 +25,7 @@ CREATE TABLE listings (
 DROP TABLE IF EXISTS bids;
 CREATE TABLE bids (
   amount INT NOT NULL,
-  placed DATE NOT NULL,
+  placed DATETIME NOT NULL,
   is_secret BOOLEAN NOT NULL,
   placed_on INT NOT NULL REFERENCES listings(listing_id),
   placed_by VARCHAR(255) NOT NULL REFERENCES users(username),
@@ -34,11 +33,11 @@ CREATE TABLE bids (
 );
 
 INSERT INTO users VALUES ('james01', 'abc123', 'james@email.com', 1);
+
 INSERT INTO listings VALUES (
-  1,
+  DEFAULT,
   'My first listing',
   'This is my first listing',
-  100,
   100,
   100,
   10,
@@ -47,14 +46,21 @@ INSERT INTO listings VALUES (
   'james01'
 );
 INSERT INTO listings VALUES (
-  2,
+  DEFAULT,
   'My second listing',
   'This is my second listing',
-  100,
   100,
   100,
   10,
   NOW(),
   NOW() + INTERVAL 1 DAY,
+  'james01'
+);
+
+INSERT INTO bids VALUES (
+  110,
+  NOW(),
+  FALSE,
+  1,
   'james01'
 );

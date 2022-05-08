@@ -20,15 +20,14 @@ public class CreateListing extends HttpServlet {
 
         try {
             Statement stmt = con.createStatement();
-            String sql = "INSERT INTO listings (title, description, minimum_price, initial_price, current_price, bid_increment, start_date, end_date, seller) VALUES (?, ?, ?, ?, ?, 5, NOW(), NOW() + INTERVAL ? DAY, 'james01')";
+            String sql = "INSERT INTO listings VALUES (DEFAULT, ?, ?, ?, ?, 5, NOW(), NOW() + INTERVAL ? DAY, 'james01')";
             PreparedStatement prep = con.prepareStatement(sql);
 
             prep.setString(1, title);
             prep.setString(2, description);
             prep.setString(3, minimumPrice);
             prep.setString(4, initialPrice);
-            prep.setString(5, initialPrice);
-            prep.setString(6, duration);
+            prep.setString(5, duration);
             prep.executeUpdate();
             prep.close();
 

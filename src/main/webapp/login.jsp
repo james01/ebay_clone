@@ -9,19 +9,18 @@
 </head>
 <body>
 <form method="post" action="home.jsp">
-    <div class="login-form">
-        <h1>Log in</h1>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" />
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
-        </div>
-        <div class="form-group">
-            <input class="button button--primary" type="submit" name="login" value="Log in" />
-        </div>
+    <h1>Log in</h1>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+    </div>
+    <div class="form-group">
+        <input class="button button--primary" type="submit" name="login" value="Log in" />
+    </div>
 </form>
 </body>
 </html>
