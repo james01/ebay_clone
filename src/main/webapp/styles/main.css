@@ -35,7 +35,6 @@ body {
 }
 
 .button {
-    color: white !important;
     text-decoration: none;
     cursor: pointer;
     display: inline-flex;

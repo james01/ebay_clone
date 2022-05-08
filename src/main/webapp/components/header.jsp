@@ -4,6 +4,8 @@
             <span class="header__brand__text">BuyBay</span>
         </a>
         <nav class="nav" role="navigation">
+            <a class="nav__link">Alerts</a>
+            <a class="nav__link" href="index.jsp">Log out</a>
             <a class="button button--primary" href="new_listing.jsp">List item</a>
         </nav>
     </div>
