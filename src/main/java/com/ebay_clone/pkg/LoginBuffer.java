@@ -17,21 +17,22 @@ public class LoginBuffer extends HttpServlet {
 
         try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM users";
-            ResultSet result = stmt.executeQuery(sql);
+            String sql = "SELECT username FROM users WHERE username=(?) and password=(?)";
+
+            PreparedStatement prep = con.prepareStatement(sql);
+
+            prep.setString(1, username);
+            prep.setString(2, password);
+            ResultSet result = prep.executeQuery();
             
-            boolean match = false;
-            while (result.next()) {
-                if (username.equals(result.getString("username")) && password.equals(result.getString("password"))) {
-                    match = true;
-                    response.sendRedirect("home.jsp");
-                    break;
-                }
-            }
-            
-            if (!match) {
+            if (!result.next()) {
                 response.sendRedirect("login.jsp");
             }
+            else {
+                response.sendRedirect("home.jsp");
+            }
+            
+            prep.close();
 
           
         } catch (SQLException e) {
