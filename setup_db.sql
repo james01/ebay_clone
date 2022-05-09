@@ -36,11 +36,12 @@ CREATE TABLE bids (
 
 INSERT INTO users VALUES ('admin', 'admin', 'admin@admin.com', 3);
 INSERT INTO users VALUES ('james01', 'abc123', 'james@email.com', 1);
+INSERT INTO users VALUES ('joe_doe', 'abc123', 'joe@email.com', 1);
 
 INSERT INTO listings VALUES (
   DEFAULT,
-  'My first listing',
-  'This is my first listing',
+  'Cool Convertible',
+  'A cool convertible that goes really fast',
   100,
   100,
   10,
@@ -48,20 +49,33 @@ INSERT INTO listings VALUES (
   NOW() + INTERVAL 1 DAY,
   'james01',
   'Car',
-  '{"Miles": 200, "Color": "Red"}'
+  '{"Miles": 200, "Color": "Yellow"}'
 );
 INSERT INTO listings VALUES (
   DEFAULT,
-  'My second listing',
-  'This is my second listing',
+  'Used Sailboat',
+  'Used but in good condition!',
   100,
   100,
   10,
   NOW(),
   NOW() + INTERVAL 1 DAY,
-  'james01',
+  'joe_doe',
   'Boat',
   '{"Crew Size": 2}'
+);
+INSERT INTO listings VALUES (
+  DEFAULT,
+  'Small Private Jet',
+  'Really fast!',
+  1000,
+  1000,
+  100,
+  NOW() - INTERVAL 7 DAY,
+  NOW(),
+  'joe_doe',
+  'Plane',
+  '{"Engines": 2}'
 );
 
 INSERT INTO bids VALUES (
@@ -69,5 +83,19 @@ INSERT INTO bids VALUES (
   NOW(),
   FALSE,
   1,
+  'james01'
+);
+INSERT INTO bids VALUES (
+  120,
+  NOW(),
+  FALSE,
+  1,
+  'joe_doe'
+);
+INSERT INTO bids VALUES (
+  2000,
+  NOW() - INTERVAL 1 DAY,
+  FALSE,
+  3,
   'james01'
 );

@@ -15,23 +15,24 @@
 <body>
 <div class="layout">
     <%@include file="components/header.jsp"%>
+    <%
+        String search = request.getParameter("search");
+    %>
     <main class="main pad-viewport">
         <div class="container">
             <section class="search-bar">
                 <form action="home.jsp">
-                    <input type="search" name="search" placeholder="Search..." />
+                    <input type="search" name="search" placeholder="Search..." value="<%=search%>" />
                     <input type="submit" value="Search" />
                 </form>
             </section>
             <section class="listings">
                 <%
-                    String search = request.getParameter("search");
-
                     String searchSql = null;
                     if ((search == null) || (search.isEmpty())) {
-                        searchSql = "SELECT * FROM listings";
+                        searchSql = "SELECT * FROM listings WHERE NOW() < end_date";
                     } else {
-                        searchSql = "SELECT * FROM listings WHERE title LIKE '%" + search + "%'";
+                        searchSql = "SELECT * FROM listings WHERE NOW() < end_date AND title LIKE '%" + search + "%'";
                     }
                     ResultSet result = con.createStatement().executeQuery(searchSql);
                     while (result.next())

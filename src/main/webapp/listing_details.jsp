@@ -58,7 +58,7 @@
                 <input type="hidden" name="listing-id" value="<%=listing.getString("listing_id")%>" />
                 <input type="hidden" name="username" value="<%=session.getAttribute("username")%>" />
                 <div class="form-group">
-                    <input required type="number" name="bid-amount" id="bid-amount" min="<%=bidAmount + listing.getInt("bid_increment")%>" />
+                    <input required type="number" name="bid-amount" id="bid-amount" min="<%=bidAmount + listing.getInt("bid_increment")%>" placeholder="<%=bidAmount + listing.getInt("bid_increment")%>+" />
                 </div>
                 <div class="form-group">
                     <input class="button button--primary" type="submit" name="place-bid" value="Place bid" />
