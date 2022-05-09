@@ -19,7 +19,7 @@
             <h2>Alerts</h2>
             <ul>
                 <%
-                    String getAlertsSql = "SELECT * FROM (SELECT b1.* FROM bids b1 LEFT JOIN bids b2 ON b1.placed_on = b2.placed_on AND b1.placed < b2.placed WHERE b2.placed_on IS NULL) b INNER JOIN listings l ON b.placed_on = l.listing_id WHERE l.end_date < NOW() AND b.placed_by='" + session.getAttribute("username") + "'";
+                    String getAlertsSql = "SELECT * FROM (SELECT b1.* FROM bids b1 LEFT JOIN bids b2 ON b1.placed_on = b2.placed_on AND b1.placed < b2.placed WHERE b2.placed_on IS NULL) b INNER JOIN listings l ON b.placed_on = l.listing_id WHERE l.end_date < NOW() AND l.minimum_price < b.amount AND b.placed_by='" + session.getAttribute("username") + "'";
                     ResultSet getAlertsResult = con.createStatement().executeQuery(getAlertsSql);
 
                     while (getAlertsResult.next())

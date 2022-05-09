@@ -60,6 +60,10 @@
                 <div class="form-group">
                     <input required type="number" name="bid-amount" id="bid-amount" min="<%=bidAmount + listing.getInt("bid_increment")%>" placeholder="<%=bidAmount + listing.getInt("bid_increment")%>+" />
                 </div>
+<%--                <div class="form-group">--%>
+<%--                    <input type="checkbox" name="is-secret" id="is-secret" />--%>
+<%--                    <label for="is-secret">Is Secret</label>--%>
+<%--                </div>--%>
                 <div class="form-group">
                     <input class="button button--primary" type="submit" name="place-bid" value="Place bid" />
                 </div>

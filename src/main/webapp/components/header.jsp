@@ -14,7 +14,7 @@
                 if ((userResult.next()) && userResult.getInt("permissions") >= 3)
                 {
             %>
-            <a class="nav__link">Create Report</a>
+            <a class="nav__link" href="create_report.jsp">Create Report</a>
             <%
                 }
             %>

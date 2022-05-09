@@ -16,7 +16,16 @@
     <%@include file="components/header.jsp"%>
     <main class="main pad-viewport">
         <div class="container">
+            <%
+                String totalEarningsSql = "SELECT SUM(amount) AS total_earnings FROM (SELECT * FROM (SELECT b1.* FROM bids b1 LEFT JOIN bids b2 ON b1.placed_on = b2.placed_on AND b1.placed < b2.placed WHERE b2.placed_on IS NULL) b INNER JOIN listings l ON b.placed_on = l.listing_id WHERE l.end_date < NOW()) t";
+                ResultSet totalEarningsResult = con.createStatement().executeQuery(totalEarningsSql);
 
+                if (totalEarningsResult.next()) {
+            %>
+                <span>Total earnings: $<%=totalEarningsResult.getString("total_earnings")%></span>
+            <%
+                }
+            %>
         </div>
     </main>
 </div>

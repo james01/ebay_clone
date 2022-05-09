@@ -9,7 +9,6 @@
   </head>
   <body>
   <div class="layout">
-    <%@include file="components/header.jsp"%>
     <main class="main pad-viewport">
       <div class="container">
         <form method="post" action="signUpBufferServlet">

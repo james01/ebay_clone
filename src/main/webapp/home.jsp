@@ -26,15 +26,38 @@
             <section class="search-bar">
                 <form action="home.jsp">
                     <input type="search" name="search" placeholder="Search..." value="<%=search%>" />
+<%--                    <span>Include categories:</span>--%>
+<%--                    <input type="checkbox" id="include-car" name="include-car" checked>--%>
+<%--                    <label for="include-car">Car</label>--%>
+<%--                    <input type="checkbox" id="include-boat" name="include-boat" checked>--%>
+<%--                    <label for="include-boat">Boat</label>--%>
+<%--                    <input type="checkbox" id="include-plane" name="include-plane" checked>--%>
+<%--                    <label for="include-plane">Plane</label>--%>
                     <input type="submit" value="Search" />
                 </form>
             </section>
             <section class="listings">
                 <%
+//                    String includeCar = request.getParameter("include-car");
+//                    String includeBoat = request.getParameter("include-boat");
+//                    String includePlane = request.getParameter("include-plane");
+
                     String searchSql = null;
                     if ((search == null) || (search.isEmpty())) {
                         searchSql = "SELECT * FROM listings WHERE NOW() < end_date";
                     } else {
+//                        String categories = "";
+//                        if (includeCar.equals("on")) {
+//                            categories.concat("car");
+//                        }
+//                        if (includeBoat.equals("on")) {
+//                            categories.concat("boat");
+//                        }
+//                        if (includePlane.equals("on")) {
+//                            categories.concat("plane");
+//                        }
+//                        System.out.println(categories);
+
                         searchSql = "SELECT * FROM listings WHERE NOW() < end_date AND title LIKE '%" + search + "%'";
                     }
                     ResultSet result = con.createStatement().executeQuery(searchSql);
