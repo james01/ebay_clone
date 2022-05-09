@@ -37,9 +37,9 @@
                     while (result.next())
                     {
                 %>
-                <a class="listing" href="listing_details.jsp?listing_id=<%=result.getString("listing_id")%>&username=<%=request.getParameter("username")%>">
-                    <div><%=result.getString("title") %></div>
-                    <div><%=result.getString("seller") %></div>
+                <a class="listing" href="listing_details.jsp?listing_id=<%=result.getString("listing_id")%>">
+                    <div class="listing__title"><%=result.getString("title") %></div>
+                    <div>Seller: <%=result.getString("seller") %></div>
                 </a>
                 <%
                     }

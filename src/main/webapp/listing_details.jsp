@@ -1,5 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.ebay_clone.pkg.*, java.sql.*"%>
+<%@ page import="org.json.JSONObject" %>
+<%@ page import="java.util.Iterator" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +12,7 @@
     <title>Listing</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/listing_details.css" />
 </head>
 <body>
 <div class="layout">
@@ -33,10 +36,27 @@
             <div>$<%=bidAmount%></div>
             <div>Seller: <a href="profile.jsp?username=<%=listing.getString("seller")%>"><%=listing.getString("seller")%></a></div>
             <div>Ends on <%=listing.getDate("end_date")%></div>
+            <div class="category-container">
+                <span>Category: <%=listing.getString("category")%></span>
+                <ul>
+                    <%
+                        String jsonString = listing.getString("category_props");
+                        JSONObject obj = new JSONObject(jsonString);
+                        Iterator<String> keys = obj.keys();
+                        while (keys.hasNext()) {
+                            String key = keys.next();
+                    %>
+                    <li><%=key%>: <%=obj.get(key)%></li>
+                    <%
+                        }
+                    %>
+                </ul>
+
+            </div>
 
             <form method="post" action="placeBidServlet">
                 <input type="hidden" name="listing-id" value="<%=listing.getString("listing_id")%>" />
-                <input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+                <input type="hidden" name="username" value="<%=session.getAttribute("username")%>" />
                 <div class="form-group">
                     <input required type="number" name="bid-amount" id="bid-amount" min="<%=bidAmount + listing.getInt("bid_increment")%>" />
                 </div>

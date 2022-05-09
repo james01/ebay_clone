@@ -27,6 +27,7 @@ public class SignUpBuffer extends HttpServlet {
             prep.executeUpdate();
             prep.close();
 
+            request.getSession().setAttribute("username", username);
             response.sendRedirect("home.jsp");
 
           

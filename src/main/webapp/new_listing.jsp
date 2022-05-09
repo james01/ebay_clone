@@ -12,15 +12,15 @@
     <link rel="stylesheet" href="styles/header.css" />
     <script type="text/javascript">
         function getCategory(x) {
-            if (x.value === "car") {
+            if (x.value === "Car") {
                 document.querySelector("#car-properties").style.display = "block";
                 document.querySelector("#boat-properties").style.display = "none";
                 document.querySelector("#plane-properties").style.display = "none";
-            } else if (x.value === "boat") {
+            } else if (x.value === "Boat") {
                 document.querySelector("#car-properties").style.display = "none";
                 document.querySelector("#boat-properties").style.display = "block";
                 document.querySelector("#plane-properties").style.display = "none";
-            } else if (x.value === "plane") {
+            } else if (x.value === "Plane") {
                 document.querySelector("#car-properties").style.display = "none";
                 document.querySelector("#boat-properties").style.display = "none";
                 document.querySelector("#plane-properties").style.display = "block";
@@ -34,7 +34,7 @@
     <main class="main pad-viewport">
         <div class="container">
             <form method="post" action="createListingServlet">
-                <h1>New Listing</h1>
+                <h2>New Listing</h2>
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input required type="text" name="title" id="title" />
@@ -52,6 +52,10 @@
                     <input required type="number" name="initial-price" id="initial-price" />
                 </div>
                 <div class="form-group">
+                    <label for="bid-increment">Bid Increment</label>
+                    <input required type="number" name="bid-increment" id="bid-increment" />
+                </div>
+                <div class="form-group">
                     <input required type="radio" id="one-day" name="duration" value="1">
                     <label for="one-day">One Day</label>
                     <input required type="radio" id="one-week" name="duration" value="7">
@@ -60,9 +64,9 @@
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select name="category" id="category" onchange="getCategory(this)">
-                        <option value="car">Car</option>
-                        <option value="boat">Boat</option>
-                        <option value="plane">Plane</option>
+                        <option value="Car">Car</option>
+                        <option value="Boat">Boat</option>
+                        <option value="Plane">Plane</option>
                     </select>
                 </div>
 

@@ -16,7 +16,19 @@
     <%@include file="components/header.jsp"%>
     <main class="main pad-viewport">
         <div class="container">
-            <h1><%=userResult.getString("username")%></h1>
+            <h1><%=request.getParameter("username")%></h1>
+            <h2>Activity</h2>
+            <ul>
+                <%
+                    String getBidsSql = "SELECT * FROM bids b INNER JOIN listings l ON b.placed_on = l.listing_id WHERE placed_by='" + request.getParameter("username") + "' ORDER BY placed DESC";
+                    ResultSet bids = con.createStatement().executeQuery(getBidsSql);
+                    while (bids.next()) {
+                %>
+                    <li><%=bids.getString("placed")%>: $<%=bids.getString("amount")%> on <%=bids.getString("title")%></li>
+                <%
+                    }
+                %>
+            </ul>
         </div>
     </main>
 </div>

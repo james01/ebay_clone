@@ -26,7 +26,8 @@ public class LoginBuffer extends HttpServlet {
             ResultSet result = prep.executeQuery();
             
             if (result.next()) {
-                response.sendRedirect("home.jsp?username=" + result.getString("username"));
+                request.getSession().setAttribute("username", result.getString("username"));
+                response.sendRedirect("home.jsp");
             } else {
                 response.sendRedirect("login.jsp");
             }
