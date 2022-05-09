@@ -34,6 +34,16 @@ CREATE TABLE bids (
   PRIMARY KEY(amount, placed_on, placed_by)
 );
 
+DROP TABLE IF EXISTS qandas;
+CREATE TABLE qandas (
+  qanda_id INT PRIMARY KEY AUTO_INCREMENT,
+  question VARCHAR(255) NOT NULL,
+  answer VARCHAR(255),
+  asked_by VARCHAR(255) NOT NULL REFERENCES users(username),
+  asked_on DATETIME NOT NULL,
+  answered_by VARCHAR(255) REFERENCES users(username)
+);
+
 INSERT INTO users VALUES ('admin', 'admin', 'admin@admin.com', 3);
 INSERT INTO users VALUES ('james01', 'abc123', 'james@email.com', 1);
 INSERT INTO users VALUES ('joe_doe', 'abc123', 'joe@email.com', 1);

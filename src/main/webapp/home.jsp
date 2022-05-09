@@ -17,6 +17,9 @@
     <%@include file="components/header.jsp"%>
     <%
         String search = request.getParameter("search");
+        if (search == null) {
+            search = "";
+        }
     %>
     <main class="main pad-viewport">
         <div class="container">

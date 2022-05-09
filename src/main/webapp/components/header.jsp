@@ -18,7 +18,7 @@
             <%
                 }
             %>
-
+            <a class="nav__link" href="qandas.jsp">QandA</a>
             <a class="nav__link" href="alerts.jsp">Alerts</a>
             <a class="nav__link" href="index.jsp">Log out <%=session.getAttribute("username")%></a>
             <a class="button button--primary" href="new_listing.jsp">List item</a>
