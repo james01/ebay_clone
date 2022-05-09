@@ -6,7 +6,7 @@ CREATE TABLE users (
   username VARCHAR(255) PRIMARY KEY,
   password VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  permissions VARCHAR(255) NOT NULL
+  permissions INT NOT NULL
 );
 
 DROP TABLE IF EXISTS listings;
@@ -22,6 +22,13 @@ CREATE TABLE listings (
   seller VARCHAR(255) NOT NULL REFERENCES users(username)
 );
 
+DROP TABLE IF EXISTS categories;
+CREATE TABLE categories (
+  listing_id INT PRIMARY KEY REFERENCES listings(listing_id),
+  name VARCHAR(255) NOT NULL,
+  props JSON NOT NULL
+);
+
 DROP TABLE IF EXISTS bids;
 CREATE TABLE bids (
   amount INT NOT NULL,
@@ -32,8 +39,8 @@ CREATE TABLE bids (
   PRIMARY KEY(amount, placed_on, placed_by)
 );
 
-INSERT INTO users VALUES ('admin', 'admin', 'admin@admin.com', 'admin');
-INSERT INTO users VALUES ('james01', 'abc123', 'james@email.com', 'user');
+INSERT INTO users VALUES ('admin', 'admin', 'admin@admin.com', 3);
+INSERT INTO users VALUES ('james01', 'abc123', 'james@email.com', 1);
 
 INSERT INTO listings VALUES (
   DEFAULT,

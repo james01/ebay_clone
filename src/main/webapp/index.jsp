@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
-<h1>Welcome</h1>
-<a class="button button--primary" href="login.jsp">Log in</a>
-<a class="button button--primary" href="signup.jsp">Sign up</a>
+<div class="layout">
+    <main class="main pad-viewport">
+        <div class="container">
+            <h1>Welcome</h1>
+            <a class="button button--primary" href="login.jsp">Log in</a>
+            <a class="button button--primary" href="signup.jsp">Sign up</a>
+        </div>
+    </main>
+</div>
 </body>
 </html>

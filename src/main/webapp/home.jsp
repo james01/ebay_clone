@@ -27,22 +27,17 @@
                 <%
                     String search = request.getParameter("search");
 
-                    ApplicationDB db = new ApplicationDB();
-                    Connection con = db.getConnection();
-
-                    Statement stmt = con.createStatement();
-                    String sql = null;
+                    String searchSql = null;
                     if ((search == null) || (search.isEmpty())) {
-                        sql = "SELECT * FROM listings";
+                        searchSql = "SELECT * FROM listings";
                     } else {
-                        sql = "SELECT * FROM listings WHERE title LIKE '%" + search + "%'";
+                        searchSql = "SELECT * FROM listings WHERE title LIKE '%" + search + "%'";
                     }
-                    System.out.println(sql);
-                    ResultSet result = stmt.executeQuery(sql);
+                    ResultSet result = con.createStatement().executeQuery(searchSql);
                     while (result.next())
                     {
                 %>
-                <a class="listing" href="listing_details.jsp?listing_id=<%=result.getString("listing_id")%>">
+                <a class="listing" href="listing_details.jsp?listing_id=<%=result.getString("listing_id")%>&username=<%=request.getParameter("username")%>">
                     <div><%=result.getString("title") %></div>
                     <div><%=result.getString("seller") %></div>
                 </a>

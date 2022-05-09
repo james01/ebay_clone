@@ -18,7 +18,7 @@ public class SignUpBuffer extends HttpServlet {
 
         try {
             Statement stmt = con.createStatement();
-            String sql = "INSERT INTO users (username, password, email, permissions) VALUES (?, ?, ?, 'user');";
+            String sql = "INSERT INTO users VALUES (?, ?, ?, 1);";
             PreparedStatement prep = con.prepareStatement(sql);
 
             prep.setString(1, username);

@@ -17,9 +17,6 @@
     <main class="main pad-viewport">
         <div class="container">
             <%
-                ApplicationDB db = new ApplicationDB();
-                Connection con = db.getConnection();
-
                 String listingSql = "SELECT * FROM listings WHERE listing_id=" + request.getParameter("listing_id");
                 ResultSet listing = con.createStatement().executeQuery(listingSql);
                 boolean listingExists = listing.next();
@@ -39,9 +36,9 @@
 
             <form method="post" action="placeBidServlet">
                 <input type="hidden" name="listing-id" value="<%=listing.getString("listing_id")%>" />
-                <input type="hidden" name="username" value="" />
+                <input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
                 <div class="form-group">
-                    <input type="number" name="bid-amount" id="bid-amount" min="<%=bidAmount + listing.getInt("bid_increment")%>" />
+                    <input required type="number" name="bid-amount" id="bid-amount" min="<%=bidAmount + listing.getInt("bid_increment")%>" />
                 </div>
                 <div class="form-group">
                     <input class="button button--primary" type="submit" name="place-bid" value="Place bid" />

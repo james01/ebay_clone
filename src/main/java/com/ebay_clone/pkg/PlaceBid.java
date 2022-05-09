@@ -24,11 +24,11 @@ public class PlaceBid extends HttpServlet {
             prep.setString(1, amount);
             prep.setBoolean(2, false);
             prep.setString(3, listingId);
-            prep.setString(4, "james01");
+            prep.setString(4, username);
             prep.executeUpdate();
             prep.close();
 
-            response.sendRedirect("listing_details.jsp?listing_id=" + listingId);
+            response.sendRedirect("listing_details.jsp?listing_id=" + listingId + "&username=" + request.getParameter("username"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

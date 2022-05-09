@@ -14,22 +14,24 @@ public class CreateListing extends HttpServlet {
         String minimumPrice = request.getParameter("minimum-price");
         String initialPrice = request.getParameter("initial-price");
         String duration = request.getParameter("duration");
+        String category = request.getParameter("category");
 
         ApplicationDB db = new ApplicationDB();
         Connection con = db.getConnection();
 
         try {
-            Statement stmt = con.createStatement();
-            String sql = "INSERT INTO listings VALUES (DEFAULT, ?, ?, ?, ?, 5, NOW(), NOW() + INTERVAL ? DAY, 'james01')";
-            PreparedStatement prep = con.prepareStatement(sql);
+            String createListingSql = "INSERT INTO listings VALUES (DEFAULT, ?, ?, ?, ?, 5, NOW(), NOW() + INTERVAL ? DAY, 'james01')";
+            PreparedStatement createListingPrep = con.prepareStatement(createListingSql);
 
-            prep.setString(1, title);
-            prep.setString(2, description);
-            prep.setString(3, minimumPrice);
-            prep.setString(4, initialPrice);
-            prep.setString(5, duration);
-            prep.executeUpdate();
-            prep.close();
+            createListingPrep.setString(1, title);
+            createListingPrep.setString(2, description);
+            createListingPrep.setString(3, minimumPrice);
+            createListingPrep.setString(4, initialPrice);
+            createListingPrep.setString(5, duration);
+            createListingPrep.executeUpdate();
+            createListingPrep.close();
+
+            String createCategorySql = "";
 
             response.sendRedirect("home.jsp");
         } catch (SQLException e) {

@@ -10,6 +10,23 @@
     <title>New Listing</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/header.css" />
+    <script type="text/javascript">
+        function getCategory(x) {
+            if (x.value === "car") {
+                document.querySelector("#car-properties").style.display = "block";
+                document.querySelector("#boat-properties").style.display = "none";
+                document.querySelector("#plane-properties").style.display = "none";
+            } else if (x.value === "boat") {
+                document.querySelector("#car-properties").style.display = "none";
+                document.querySelector("#boat-properties").style.display = "block";
+                document.querySelector("#plane-properties").style.display = "none";
+            } else if (x.value === "plane") {
+                document.querySelector("#car-properties").style.display = "none";
+                document.querySelector("#boat-properties").style.display = "none";
+                document.querySelector("#plane-properties").style.display = "block";
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="layout">
@@ -40,6 +57,30 @@
                     <input required type="radio" id="one-week" name="duration" value="7">
                     <label for="one-week">One Week</label>
                 </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" onchange="getCategory(this)">
+                        <option value="car">Car</option>
+                        <option value="boat">Boat</option>
+                        <option value="plane">Plane</option>
+                    </select>
+                </div>
+
+                <div id="car-properties" class="form-group" style="display: block;">
+                    <label for="miles">Miles</label>
+                    <input type="number" name="miles" id="miles" />
+                    <label for="color">Color</label>
+                    <input type="text" name="color" id="color" />
+                </div>
+                <div id="boat-properties" class="form-group" style="display: none;">
+                    <label for="crew-size">Crew Size</label>
+                    <input type="number" name="crew-size" id="crew-size" />
+                </div>
+                <div id="plane-properties" class="form-group" style="display: none;">
+                    <label for="engines">Number of Engines</label>
+                    <input type="number" name="engines" id="engines" />
+                </div>
+
                 <div class="form-group">
                     <input class="button button--primary" type="submit" name="create" value="Create" />
                 </div>

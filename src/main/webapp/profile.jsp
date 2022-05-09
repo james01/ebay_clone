@@ -16,20 +16,7 @@
     <%@include file="components/header.jsp"%>
     <main class="main pad-viewport">
         <div class="container">
-            <%
-                ApplicationDB db = new ApplicationDB();
-                Connection con = db.getConnection();
-
-                Statement stmt = con.createStatement();
-                String sql = "SELECT * FROM users WHERE username='" + request.getParameter("username") + "'";
-                ResultSet result = stmt.executeQuery(sql);
-                if (result.next())
-                {
-            %>
-            <h1><%=result.getString("username")%></h1>
-            <%
-                }
-            %>
+            <h1><%=userResult.getString("username")%></h1>
         </div>
     </main>
 </div>
