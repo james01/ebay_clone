@@ -40,6 +40,19 @@ INSERT INTO users VALUES ('joe_doe', 'abc123', 'joe@email.com', 1);
 
 INSERT INTO listings VALUES (
   DEFAULT,
+  'Junker Van',
+  'At least it has a roof',
+  5,
+  5,
+  1,
+  NOW(),
+  NOW() + INTERVAL 7 DAY,
+  'james01',
+  'Car',
+  '{"Miles": 10000, "Color": "Gray"}'
+);
+INSERT INTO listings VALUES (
+  DEFAULT,
   'Cool Convertible',
   'A cool convertible that goes really fast',
   100,
@@ -87,7 +100,7 @@ INSERT INTO bids VALUES (
 );
 INSERT INTO bids VALUES (
   120,
-  NOW(),
+  NOW() - INTERVAL 1 MINUTE,
   FALSE,
   1,
   'joe_doe'
@@ -96,6 +109,6 @@ INSERT INTO bids VALUES (
   2000,
   NOW() - INTERVAL 1 DAY,
   FALSE,
-  3,
+  4,
   'james01'
 );

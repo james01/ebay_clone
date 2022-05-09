@@ -35,7 +35,7 @@
             <span><%=listing.getString("description")%></span>
             <div>$<%=bidAmount%></div>
             <div>Seller: <a href="profile.jsp?username=<%=listing.getString("seller")%>"><%=listing.getString("seller")%></a></div>
-            <div>Ends on <%=listing.getDate("end_date")%></div>
+            <div>Ends on <%=listing.getString("end_date")%></div>
             <div class="category-container">
                 <span>Category: <%=listing.getString("category")%></span>
                 <ul>
